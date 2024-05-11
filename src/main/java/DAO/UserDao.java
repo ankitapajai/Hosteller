@@ -56,6 +56,43 @@ public class UserDao {
 		
 	}
 	
+	public User getoneUser(int id) throws ClassNotFoundException, SQLException
+	{
+		String sql = "select * from user where id = ?";
+		Connection con = getconnect();
+		PreparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1, id);
+		ResultSet rs =   ps.executeQuery();
+		
+		if(rs.next()) {
+			int userId = rs.getInt("id");
+			String username = rs.getString("name");
+			String lastname = rs.getString("lname");
+			String email = rs.getString("email");
+			String password = rs.getString("password");
+			return new User(userId, username, lastname, email, password);
+		}else {
+			return null;
+		}
+		
+	}
+	
+	public int update(User u) throws ClassNotFoundException, SQLException
+	{
+		Connection con = getconnect();
+		PreparedStatement ps = con.prepareStatement("update user set name=?, lname=?, email=?, password=? where id=?");
+		ps.setString(1, u.getFname());
+		ps.setString(2, u.getLname());
+		ps.setString(3, u.getEmail());
+		ps.setString(4, u.getPassword());
+		ps.setInt(5, u.getId());
+		
+		int a = ps.executeUpdate();
+		con.close();
+		return a;
+		 
+	}
+	
 	public int delete(int id) throws ClassNotFoundException, SQLException
 	{
 		String sql = "delete from user where id = ?";

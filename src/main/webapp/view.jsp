@@ -67,7 +67,7 @@ List<User> userList = ud.getAllUser();
 	<td><%=use.getEmail() %></td>
 	<td><%=use.getPassword() %></td>
 <td>
-	<a href = ""class="button button2">Edit</a>
+	<a href = "edit.jsp?id=<%=use.getId()%>"class="button button2">Edit</a>
 	<a href = "delete.jsp?id=<%=use.getId()%>" class="button button1">Delete</a>
 </td>
 <tr>
