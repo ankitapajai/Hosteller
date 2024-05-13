@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>edit page</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 this is edit page...
@@ -16,27 +17,41 @@ out.print(id);
 User u=null;
 u = new UserDao().getoneUser(id);
 %>
+<div class="login-box">
+    <form action="update.jsp">
+        <div class="user-box">
+            <input type="text" name="id" value="<%=u.getId() %>">
+            <label>User Id</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="name" value="<%=u.getFname() %>">
+            <label>User Name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="lname" value="<%=u.getLname() %>">
+            <label>Last name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="email" value="<%=u.getEmail() %>">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="password" value="<%=u.getPassword() %>" placeholder="password">
+            <label>Password</label>
+        </div>
+        <center>
+            <a href="#" onclick="submitForm()">
+                UPDATE
+                <span></span>
+            </a>
+        </center>
+    </form>
+</div>
+<script>
+    function submitForm() {
+        document.querySelector('form').submit();
+    }
+</script>
 
-<form action="update.jsp">
-      <div>
-      <input type="text" name="id" value=<%=u.getId() %> placeholder="Id" readonly="readonly">
-      </div>
-      <div>
-      <input type="text" name="name" value=<%=u.getFname() %> placeholder="name">
-      </div>
-      <div>
-      <input type="text" name="lname" value=<%=u.getLname() %> placeholder="lname" >
-      </div>
-      <div>
-      <input type="text" name="email" value=<%=u.getEmail() %> placeholder="email">
-      </div>
-      <div>
-      <input type="text" name="password" value=<%=u.getPassword() %> placeholder="password">
-      </div>
-      
-      <div>
-      <input type="submit" value="submit">
-      </div>
-</form>
 </body>
 </html>
